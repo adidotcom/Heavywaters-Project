@@ -36,4 +36,9 @@ X_train, X_test, y_train, y_test = train_test_split(df, y, test_size=0.2)
 print (X_train.shape, y_train.shape)
 print (X_test.shape, y_test.shape)
 ```
+It was nececcary to built a *features* set from each given input text entry inorder to train the model. This is done by transforming the obscured text into numeric vectors. *Bag of words* which is one of the widely known models, helps to assign numeric values to the words, creating a list of numbers. Scikit provides a vectorizer called TfidfVectorizer which transforms the text based on the bag-of-words, additionally, it computes term frequencies and evaluate each word using the tf-idf weighting scheme.
 
+```
+tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2',encoding='latin-1', stop_words='english')
+features = tfidf.fit_transform(X_train.details.values.astype(str))
+```
