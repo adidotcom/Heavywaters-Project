@@ -1,6 +1,6 @@
 # Heavywaters-Project
 
-The idea of the project is to be able to successfully use machine learning cocepts and build a document classification model. A document labeled dataset is provided, that has 62204 entries of documents. Each entry has a document label and an OCR output of the document. All the words of the document was obscured using fixed length hashing. 
+The idea of the project is to be able to successfully use machine learning concepts and build a document classification model. A document labeled dataset is provided, that has 62204 entries of documents. Each entry has a document label and an OCR output of the document. All the words of the document are obscured using fixed length hashing. 
 
 The dataset looks something like this:
 
@@ -57,4 +57,4 @@ The AWS ML capability was also used to train and test the classifier. AWS ML bui
 ### Deploying the model on AWS cloud platform
 This was my first experience deploying a model on AWS/Azure platform. Interface wise, I found Azure ML much more user-friendly. Finally, I decided to go with AWS, as Heavywaters rely majorly on this platform. The first step was to upload the model on the AWS S3 bucket and then deploy the model on a *serverless* AWS Lambda. 
 
-The model was then attempted to be tested on the local machine using Flask API. A virtual environment was created, and the flask application was implemented under it. A python executable *predictions.py* is attached in the repository. The program currently sends a POST request to the model in the S3 bucket and gives a 405 METHOD NOT ALLOWED error. Many attempts have been made to connect to the S3 bucket and run the model on the local machine. Due to time restrictions and as I am still learning AWS and getting better at it, the project is still under *production* and is expected to be completed by Monday 5th March.
+The model was then attempted to be tested on the local machine using Flask API. A virtual environment was created, and the flask application was implemented under it. A python executable *predictions.py* is attached in the repository. The program currently sends a POST request to the model in the S3 bucket and gives a 405 METHOD NOT ALLOWED error. Many attempts have been made to connect to the S3 bucket and run the model on the local machine. Due to time restrictions and as I am still learning AWS and getting better at it, the project is still under *production* and is expected to be completed by Tuesday 6th March.
