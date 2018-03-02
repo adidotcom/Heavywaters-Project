@@ -26,6 +26,14 @@ BILL BINDER                  289
 INTENT TO CANCEL NOTICE      229
 APPLICATION                  229
 ```
-A machine learning model is to be built that can learn from this dataset as an input. It will be used later to predict the category of a document when an unseen document input is given to it. 
+A machine learning model (classifier) is to be built that can learn from this dataset as an input. It will be used later to predict the category of a document when an unseen document input is given to it. 
 
 ### Step 2: Train-test split
+The dataset is split into two parts: one for training the model and the other set will be used as a test dataset in order to make predictions. The *train_test_split* method from the *scikit-learn library* was used to split the dataset in the ratio of 80:20, where 80% of the data was used for training the classifier and 20% of the data was reserved for making model prediction.
+
+```
+X_train, X_test, y_train, y_test = train_test_split(df, y, test_size=0.2)
+print (X_train.shape, y_train.shape)
+print (X_test.shape, y_test.shape)
+```
+
