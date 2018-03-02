@@ -42,3 +42,16 @@ It was nececcary to built a *features* set from each given input text entry inor
 tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2',encoding='latin-1', stop_words='english')
 features = tfidf.fit_transform(X_train.details.values.astype(str))
 ```
+
+### Step 3: Builing the model
+From the various supervised machine learning algorithms available at hand, this project is built using the Multinomial Naive Bayes model, as it provided the best result and faster processing. 
+
+```
+nbmodel = MultinomialNB().fit(features, y_train)
+```
+The Naive Bayes Classifier has an accuracy of approximately 72% 
+
+### Deploying the model on AWS cloud platform
+This was my first experience deploying a model on AWS/Azure platform. Interface wise, I found Azure ML much more user-friendly. Finally, I decided to go with AWS, as Heavywaters rely majorly on this platform. The first step was to upload the model on the AWS S3 bucket and then deploy the model on a *serverless* AWS Lambda. 
+
+The model was then attempted to be tested on the local machine using Flask API. A virtual environment was created, and the flask application was implemented under it. A python executable *predictions.py* is attached in the repository. The program currently sends a POST request to the model in the S3 bucket and gives a 405 METHOD NOT ALLOWED error. Many attempts have been made to connect to the S3 bucket and run the model on the local machine. Due to time restrictions and as I am still learning AWS and getting better at it, the project is still under *production* and is expected to be completed by Monday 5th March.
