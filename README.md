@@ -51,6 +51,11 @@ nbmodel = MultinomialNB().fit(features, y_train)
 ```
 The Naive Bayes Classifier has an accuracy of approximately 72% 
 
+### Running AWS ML instance
+The AWS ML capability was also used to train and test the classifier. AWS ML built similar classifier with an average F-1 score of 0.72
+
+![Optional Text](../master/Screen Shot 2018-03-02 at 3.29.49 AM.png)
+
 ### Deploying the model on AWS cloud platform
 This was my first experience deploying a model on AWS/Azure platform. Interface wise, I found Azure ML much more user-friendly. Finally, I decided to go with AWS, as Heavywaters rely majorly on this platform. The first step was to upload the model on the AWS S3 bucket and then deploy the model on a *serverless* AWS Lambda. 
 
