@@ -1,3 +1,5 @@
+# ---------------------Importing all the required modules----------------------
+
 import pandas as pd
 # For splitting into training and testing data
 from sklearn.model_selection import train_test_split
@@ -5,11 +7,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 # For Naive Bayes Classification Modeling
 from sklearn.naive_bayes import MultinomialNB
-
+import pickle
 # For saving the model
 from sklearn.externals import joblib
+from sklearn.model_selection import GridSearchCV
 
-# Loading the dataset
+# ------------------- Data Exploration and Manipulation------------------------
+
+# Reading the dataset from local machine
 df = pd.read_csv('/Users/adi/Downloads/shuffled-full-set-hashed.csv', names=["doctype", "details"])
 y = df.doctype
 
@@ -17,16 +22,22 @@ y = df.doctype
 df['doctype'].value_counts()
 
 # Create training and testing variables
-X_train, X_test, y_train, y_test = train_test_split(df, y, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(df, y, test_size=0.15)
 print (X_train.shape, y_train.shape)
 print (X_test.shape, y_test.shape)
 
-tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2',encoding='latin-1', stop_words='english')
+# Vectorization of the training data
+tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2')
 features = tfidf.fit_transform(X_train.details.values.astype(str))
 
-X_test_idf = tfidf.transform(X_test.details.values.astype(str))
+joblib.dump(tfidf, 'vec_count.joblib')
+print ("Success")
 
-nbmodel = MultinomialNB().fit(features, y_train)
+# X_test_idf = tfidf.transform(X_test.details.values.astype(str))
+
+# ---------------- Building a multinomial Naive Bayes model----------------------
+# 0.7932697460079305 accuracy
+nbmodel = MultinomialNB(alpha=0.1).fit(features, y_train)
 
 # Save the model
-joblib.dump(nbmodel, 'nbmodel.pkl')
+pickle.dump(nbmodel, open("nbmodel.pkl", "wb"))
