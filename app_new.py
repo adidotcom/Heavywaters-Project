@@ -1,11 +1,13 @@
+# ------------------------- Importing module ----------------------------
 from flask import Flask, request, json
 import boto3
 import pickle 
 from sklearn.feature_extraction.text import TfidfVectorizer
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.externals import joblib
 
-
+# --------------- Creating a Flask object and connecting to S3 -----------
 BUCKET_NAME = 'newheavywaters'
 MODEL_FILE_NAME = 'nbmodel.pkl' 
 app = Flask(__name__) 
@@ -20,11 +22,8 @@ def index():
     # Load model
     model = load_model(MODEL_FILE_NAME)   
     # Make prediction 
-    prediction = model.predict(final_data).tolist()
-    
-    import pandas as pd
+    prediction = model.predict(final_data).tolist()  
     predictions = pd.Series(prediction).to_json(orient='values')
-    
     print prediction
     # Respond with prediction result
     result = {'prediction': predictions}    
@@ -41,12 +40,10 @@ def load_model(key):
     return model
 
 def tfd_model(data):
-    from sklearn.externals import joblib
     vec = joblib.load('vec_count.joblib')
     X = vec.transform([data])
     return X
-    
-    
+        
 if __name__ == '__main__':    
     # listen on all IPs 
     app.run(host='0.0.0.0')
