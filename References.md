@@ -12,3 +12,8 @@ http://universityofbigdata.net/competition/winners/5681717746597888?lang=en
 ```
 https://www.quantstart.com/articles/Supervised-Learning-for-Document-Classification-with-Scikit-Learn
 ```
+
+## Youtube Video - In the land of Serverless, who uses Zappa is king!
+```
+https://www.youtube.com/watch?v=1aggqfPzhNY
+```
