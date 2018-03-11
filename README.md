@@ -63,4 +63,16 @@ The model was then attempted to be tested on the local machine using Flask API. 
 ### Step 1- Tuning our document classification model
 After the previous deployment, it was ideal to improve our learning model using the capabilities of scikit-learn. The initial model used was *Multinomial Naive Bayes* with the default alpha value of "1". A gridsearch (specifically used to tune a machine learning model's hyperparameters) was implemented on the model and the best value for alpha was found to be "0.1". The accuracy was increased from **0.72** to **0.79**.
 
+## Update-2
+
+### Getting Started with AWS CodePipeline
+```
+https://docs.aws.amazon.com/codepipeline/latest/userguide/getting-started-codepipeline.html
+```
+
+### Creating a Key Pair Using Amazon EC2
+```
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair
+```
+
 
